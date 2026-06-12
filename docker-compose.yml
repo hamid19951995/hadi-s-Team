@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  # Primary App Web Service
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: autonomous-studio-app
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - VITE_API_ENDPOINT=${VITE_API_ENDPOINT}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - APP_URL=${APP_URL}
+      - BACKEND_API_KEY=${BACKEND_API_KEY}
+    env_file:
+      - ${ENV_FILE:-.env.development}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+
+  # Relational Database service (Relating with Cloud SQL setup specifications)
+  db:
+    image: postgres:15-alpine
+    container_name: autonomous-studio-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER:-db_admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-db_secure_pass_99}
+      POSTGRES_DB: ${DB_NAME:-autonomous_studio}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-db_admin} -d ${DB_NAME:-autonomous_studio}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Dynamic caching node for decay variables execution
+  cache:
+    image: redis:7-alpine
+    container_name: autonomous-studio-cache
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+    driver: local

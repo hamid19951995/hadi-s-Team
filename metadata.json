@@ -1,0 +1,8 @@
+{
+  "name": "AI Software Studio",
+  "description": "An autonomous AI software engineering platform with modular event-driven orchestrations, task graph DAG solvers, and typed memory decay zones.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

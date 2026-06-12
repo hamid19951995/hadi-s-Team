@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;750&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-turquoise-50: #f0fdfa;
+  --color-turquoise-100: #ccfbf1;
+  --color-turquoise-500: #14b8a6;
+  --color-turquoise-600: #0d9488;
+  --color-turquoise-700: #0f766e;
+  
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+}
+
+html, body, #root {
+  font-family: "Vazirmatn", "Inter", system-ui, sans-serif;
+}
+
+/* Custom tile-pattern styled details */
+.tile-pattern {
+  background-color: #030d10;
+  background-image: 
+    radial-gradient(#14b8a6 0.5px, transparent 0.5px), 
+    radial-gradient(#f59e0b 0.5px, #030d10 0.5px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Elegant traditional Persian-Arabic calligraphic line decorations */
+.persian-glow {
+  text-shadow: 0 0 12px rgba(20, 184, 166, 0.4);
+}
+.gold-glow {
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+@theme {
+  --font-sans: "Vazirmatn", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  font-family: "Vazirmatn", "Inter", sans-serif;
+  background-color: #030712;
+}
+
+/* Iranian Firoozeh Glow and Zafran elements */
+.firoozeh-glow {
+  box-shadow: 0 0 25px -5px rgba(20, 184, 166, 0.25);
+}
+
+.firoozeh-border {
+  border-color: rgba(20, 184, 166, 0.4);
+}
+
+.zafran-text {
+  color: #f59e0b;
+}
+
+.zafran-bg {
+  background-color: rgba(245, 158, 11, 0.15);
+}
